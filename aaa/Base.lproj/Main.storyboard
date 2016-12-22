@@ -32,9 +32,18 @@
                                     <action selector="playme:" destination="BYZ-38-t0r" eventType="touchUpInside" id="175-ft-fg7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-a1-YDI">
+                                <rect key="frame" x="166" y="376" width="42" height="30"/>
+                                <state key="normal" title="Play 2"/>
+                                <connections>
+                                    <action selector="playme2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FVr-KT-qCH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="g6r-a1-YDI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JU6-Us-L9f"/>
+                            <constraint firstItem="g6r-a1-YDI" firstAttribute="top" secondItem="hpH-HP-YGz" secondAttribute="bottom" constant="10" id="XOV-zx-oot"/>
                             <constraint firstItem="hpH-HP-YGz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hvB-kR-Q1a"/>
                             <constraint firstItem="hpH-HP-YGz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yEw-K7-Kfg"/>
                         </constraints>

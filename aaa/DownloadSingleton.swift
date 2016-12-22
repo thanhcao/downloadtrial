@@ -16,16 +16,16 @@ class DownloadSingleton:NSObject, URLSessionDownloadDelegate{
         return session
     }()
     
-    var docDirectoryURL:NSURL
+    var docDirectoryURL:URL
     override init(){
-        super.init()
-        let URLs = FileManager.default.urls(for: NSDocumentDirectory, in: NSUserDomainMask)
+        let URLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         self.docDirectoryURL = URLs[0]
+        super.init()
     }
     
     func download(_ urlString:String){
         if let url = URL(string: urlString){
-            let downloadTask:URLSessionDownloadTask = downloadSession.downloadTask(with: url)
+            let downloadTask = downloadSession.downloadTask(with: url)
             downloadTask.resume()
         }
 
@@ -33,7 +33,7 @@ class DownloadSingleton:NSObject, URLSessionDownloadDelegate{
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64){
         let a = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
-        print("Progress: \(a)")
+        print("Progress \(downloadTask.taskIdentifier): \(a)")
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -48,18 +48,24 @@ class DownloadSingleton:NSObject, URLSessionDownloadDelegate{
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         print("Finish")
         let fileManager:FileManager = FileManager.default
-        let destinationFilename:NSString = downloadTask.originalRequest.url?.lastPathComponent
-        let destinationURL:NSURL = self.docDirectoryURL.URLByAppendingPathComponent(destinationFilename)
+        let destinationFilename:String = (downloadTask.originalRequest?.url?.lastPathComponent)!
+        let destinationURL:URL = self.docDirectoryURL.appendingPathComponent(destinationFilename)
         
         if (fileManager.fileExists(atPath: destinationURL.path)){
-            fileManager.removeItem(at: destinationURL)
+            do {
+                try fileManager.removeItem(at: destinationURL)
+            }
+            catch let error as NSError {
+                print("Ooops! Something went wrong: \(error)")
+            }
         }
         
-        let success = fileManager.copyItem(at: location, to: destinationURL)
-        
-        if (success) {
+        do {
+            try fileManager.copyItem(at: location, to: destinationURL)
+        }
+        catch let error as NSError {
+            print("Ooops! Something went wrong: \(error)")
+        }
 
-        }
     }
-    
 }
