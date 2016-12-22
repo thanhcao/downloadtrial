@@ -200,6 +200,11 @@
 					9413C21E1E0A3BC20006C437 = {
 						CreatedOnToolsVersion = 8.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					9413C2351E0A3BC30006C437 = {
 						CreatedOnToolsVersion = 8.2;
@@ -511,6 +516,7 @@
 				9413C24C1E0A3BC30006C437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9413C24D1E0A3BC30006C437 /* Build configuration list for PBXNativeTarget "aaaTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +525,7 @@
 				9413C24F1E0A3BC30006C437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9413C2501E0A3BC30006C437 /* Build configuration list for PBXNativeTarget "aaaUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +534,7 @@
 				9413C2521E0A3BC30006C437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
